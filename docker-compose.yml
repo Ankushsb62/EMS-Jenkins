@@ -16,7 +16,10 @@ services:
     build: .
     image: django
     container_name: django
-    command: ["python", "manage.py", "runserver", "0.0.0.0:7000"]
+     command: >
+      sh -c "python manage.py makemigrations && 
+             python manage.py migrate && 
+             python manage.py runserver 0.0.0.0:7000"
     ports:
       - "7000:7000"
     volumes:
